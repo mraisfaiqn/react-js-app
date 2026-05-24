@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap');
+
+/* ── Root & Reset ──────────────────────────────────────────── */
+:root {
+  font-family: "Smooch Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #ffffff;
+  color: #1d1d1f;
+
+  --accent:        #7c3aed;
+  --accent-light:  #ede9fe;
+  --accent-dark:   #5b21b6;
+  --surface:       #f9f8ff;
+  --border:        #e5e3f0;
+  --text-muted:    #6b7280;
+  --danger:        #dc2626;
+  --danger-light:  #fee2e2;
+  --radius:        12px;
+  --shadow-sm:     0 1px 4px rgba(124,58,237,.08);
+  --shadow-md:     0 4px 16px rgba(124,58,237,.12);
+  --transition:    .18s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 60%, #ede9fe 100%);
+}
+
+/* ── Page Container ────────────────────────────────────────── */
+.expense-container {
+  max-width: 680px;
+  margin: 3rem auto;
+  padding: 0 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Title ─────────────────────────────────────────────────── */
+.expense-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #1d1d1f;
+  border-left: 5px solid var(--accent);
+  padding-left: .75rem;
+  line-height: 1.2;
+}
+
+/* ── Shared Section Card ───────────────────────────────────── */
+.form-section,
+.filter-section,
+.total-section,
+.expenses-section,
+.state-display {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Section Headings ──────────────────────────────────────── */
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* ── Form ──────────────────────────────────────────────────── */
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.form-row {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.expense-input,
+.expense-select,
+.filter-select {
+  flex: 1;
+  min-width: 140px;
+  height: 44px;
+  padding: 0 .875rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #1d1d1f;
+  background: var(--surface);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.expense-input:focus,
+.expense-select:focus,
+.filter-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124,58,237,.15);
+}
+
+.expense-input::placeholder {
+  color: #b0aac0;
+}
+
+/* custom select arrow */
+.expense-select,
+.filter-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237c3aed' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  padding-right: 2.25rem;
+  cursor: pointer;
+}
+
+/* ── Add Button ────────────────────────────────────────────── */
+.add-expense-btn {
+  height: 44px;
+  padding: 0 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 2px 8px rgba(124,58,237,.25);
+}
+
+.add-expense-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.add-expense-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Total ─────────────────────────────────────────────────── */
+.total-section {
+  background: var(--accent-light);
+  border-color: #c4b5fd;
+}
+
+.total-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-dark);
+}
+
+.filter-info {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: .7;
+  margin-left: .35rem;
+}
+
+/* ── Expense List ──────────────────────────────────────────── */
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.expense-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.expense-item:hover {
+  border-color: #c4b5fd;
+  box-shadow: var(--shadow-sm);
+}
+
+.expense-info {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  min-width: 0;
+}
+
+.expense-description {
+  font-size: 1.05rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expense-details {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.expense-amount {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.expense-category {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: .15rem .5rem;
+  border-radius: 99px;
+}
+
+.filter-badge {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: .1rem .55rem;
+  border-radius: 99px;
+  margin-left: .5rem;
+  vertical-align: middle;
+}
+
+/* ── Empty State ───────────────────────────────────────────── */
+.no-expenses {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .95rem;
+  padding: 1.5rem 0;
+}
+
+/* ── Delete Button ─────────────────────────────────────────── */
+.delete-btn {
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 .9rem;
+  border: 1.5px solid var(--danger);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--danger);
+  font-family: inherit;
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.delete-btn:hover {
+  background: var(--danger-light);
+}
+
+/* ── State Display ─────────────────────────────────────────── */
+.state-display {
+  border-style: dashed;
+  background: #fafafa;
+}
+
+.state-title {
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: .6rem;
+}
+
+.state-info {
+  font-size: .9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .expense-title { font-size: 1.8rem; }
+  .form-row { flex-direction: column; }
+  .add-expense-btn { width: 100%; }
+}
